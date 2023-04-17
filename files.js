@@ -14,11 +14,39 @@ const fs = require('fs');
 // console.log('last line');
 
 //writing files
-fs.writeFile('./docs/blog1.txt', 'hello, world' , () => {
-    console.log('file was written');
-});
+// fs.writeFile('./docs/blog1.txt', 'hello, world' , () => {
+//     console.log('file was written');
+// });
 
-fs.writeFile('./docs/blog2.txt', 'hello, again' , () => {
-    console.log('file was written');
-});
+// fs.writeFile('./docs/blog2.txt', 'hello, again' , () => {
+//     console.log('file was written');
+// });
 
+//directories
+//if the directory does not exist, it will create it.  If it does exist, it will not do anything.
+if (!fs.existsSync("./assets")) {
+fs.mkdir('./assets', (err) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log('folder created');
+}   );
+}else{
+    fs.rmdir('./assets', (err) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log('folder deleted');
+    }   );
+}
+
+//deleting files
+//if the file does not exist, it will throw an error.  If it does exist, it will delete the file.
+if (fs.existsSync("./docs/deleteme.txt")) {
+    fs.unlink('./docs/deleteme.txt', (err) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log('file deleted');
+    }   );
+}
