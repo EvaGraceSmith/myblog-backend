@@ -7,3 +7,5 @@ console.log(people, ages);
 //os is a built in module that gives you information about the operating system you are using.  You can use this to get the hostname, platform, and other information about the operating system.  You can also use this to get the free memory, total memory, and other information about the memory on your computer.  You can also use this to get the current user, and other information about the user.
 const os = require('os');
 
+console.log(os.platform(), os.homedir());
+
