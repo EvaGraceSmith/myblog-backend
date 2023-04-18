@@ -1,0 +1,26 @@
+{
+  "name": "myblog-backend",
+  "version": "1.0.0",
+  "description": "I am diving deeper into all things MERN related and am walking through this [Node.js tutorial](https://github.com/iamshaunjp/node-crash-course) to hone my knowledge and skills.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvaGraceSmith/myblog-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EvaGraceSmith/myblog-backend/issues"
+  },
+  "homepage": "https://github.com/EvaGraceSmith/myblog-backend#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
