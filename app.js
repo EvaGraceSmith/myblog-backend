@@ -7,6 +7,8 @@ const app = express();
 //listen for requests
 app.listen(3000);
 
+//installed ejs, a templating engine that allows you to use javascript in html files and allows you to use variables (dynamic content) in html files
+
 
 //this function takes in a request and a response object.  The request object contains information about the request that was made.  The response object contains information about what we want to send back to the client.
 app.get('/', (req, res) => {
