@@ -1,74 +1,33 @@
-const http = require('http');
-const fs = require('fs');
-const _ = require('lodash');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
+// express app
+const app = express();
 
-    //lodash
-    const num = _.random(0, 20);
-    console.log(num);
+// listen for requests
+app.listen(3000);
 
-//_.once() is a lodash function. It will only run the function once.  It will not run the function again.
-    const greet = _.once(()=> {
-        console.log("hello");
-    });
+// register view engine
+app.set('view engine', 'ejs');
+// app.set('views', 'myviews');
 
-    greet();
-    greet();
-
-  // set header content type
-  res.setHeader('Content-Type', 'text/html');
-
-  // res.write('<p>hello, ninjas</p>');
-  // res.write('<p>hello again, ninjas</p>');
-  // res.end();
-
-  // send html file
-  // fs.readFile('./views/index.html', (err, data) => {
-  //   if (err) {
-  //     console.log(err);
-  //     res.end();
-  //   }
-  //   //res.write(data);
-  //   res.end(data);
-  // });
-
-  // routing
-  let path = './views/';
-  switch(req.url) {
-    case '/':
-      path += 'index.html';
-      res.statusCode = 200;
-      break;
-    case '/about':
-      path += 'about.html';
-      res.statusCode = 200;
-      break;
-      // below is a redirect
-    case '/about-us':
-      res.statusCode = 301;
-      res.setHeader('Location', '/about');
-      res.end();
-      break;
-    default:
-      path += '404.html';
-      res.statusCode = 404;
-  }
-
-  // send html
-  fs.readFile(path, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.end();
-    }
-    //res.write(data);
-    res.end(data);
-  });
-
-
+app.get('/', (req, res) => {
+  const blogs = [
+    {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+  ];
+  res.render('index', { title: 'Home', blogs });
 });
 
-// localhost is the default value for 2nd argument
-server.listen(3000, 'localhost', () => {
-  console.log('listening for requests on port 3000');
+app.get('/about', (req, res) => {
+  res.render('about', { title: 'About' });
+});
+
+app.get('/blogs/create', (req, res) => {
+  res.render('create', { title: 'Create a new blog' });
+});
+
+// 404 page
+app.use((req, res) => {
+  res.status(404).render('404', { title: '404' });
 });
