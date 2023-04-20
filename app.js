@@ -24,15 +24,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname });
-});
-
-//redirects
-app.get('/about-us', (req, res) => {
-    res.reroute('/about');
-});
-
-//404 page
-app.use((req, res) => {
-    res.sendFile('./views/404.html', { root: __dirname });
-});
+    res.render('about', { title: 'About' });
+  });
+  
+  app.get('/blogs/create', (req, res) => {
+    res.render('create', { title: 'Create a new blog' });
+  });
+  
+  // 404 page
+  app.use((req, res) => {
+    res.status(404).render('404', { title: '404' });
+  });
